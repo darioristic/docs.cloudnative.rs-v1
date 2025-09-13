@@ -15,7 +15,7 @@ import type {
 } from '@headlessui/react'
 import cn from 'clsx'
 import type { FC, ReactElement, ReactNode } from 'react'
-import { Fragment, useEffect, useRef, useState } from 'react'
+import { Children, Fragment, cloneElement, isValidElement, useEffect, useRef, useState } from 'react'
 import { useHash } from '../../hooks/use-hash.js'
 
 type TabItem = string | ReactElement
@@ -134,10 +134,16 @@ export const Tabs: FC<
           )
         }
       >
-        {items.map((item, index) => (
-          <HeadlessTab
-            key={index}
-            disabled={isTabObjectItem(item) && item.disabled}
+        {items.map((item, index) => {
+          // Generate a more stable key for tabs
+          const key = isTabObjectItem(item) 
+            ? (typeof item.label === 'string' ? item.label : `tab-${index}`)
+            : (typeof item === 'string' ? item : `tab-${index}`)
+          
+          return (
+            <HeadlessTab
+              key={key}
+              disabled={isTabObjectItem(item) && item.disabled}
             className={args => {
               const { selected, disabled, hover, focus } = args
               return cn(

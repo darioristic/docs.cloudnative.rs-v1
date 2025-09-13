@@ -1,6 +1,7 @@
 import cn from 'clsx'
 import NextLink from 'next/link'
 import type { FC, HTMLAttributes, ReactElement, ReactNode } from 'react'
+import { Children, cloneElement, isValidElement } from 'react'
 
 const Card: FC<{
   title: string
@@ -59,6 +60,18 @@ const _Cards: FC<
     num?: number
   } & HTMLAttributes<HTMLDivElement>
 > = ({ children, num = 3, className, style, ...props }) => {
+  // Automatically add key props to Card children if they don't have them
+  const childrenWithKeys = Children.map(children, (child, index) => {
+    if (isValidElement(child) && child.type === Card && !child.key) {
+      // Generate a key based on the card's title or href
+      const title = child.props?.title
+      const href = child.props?.href
+      const key = title || href || `card-${index}`
+      return cloneElement(child, { key })
+    }
+    return child
+  })
+
   return (
     <div
       className={cn(
@@ -72,7 +85,7 @@ const _Cards: FC<
         ['--rows' as string]: num
       }}
     >
-      {children}
+      {childrenWithKeys}
     </div>
   )
 }

@@ -12,7 +12,7 @@ const meta: MetaRecord = {
       'get-started': 'Get Started',
       'new-team-member': 'New Team Member',
       'contributing-maintaining': 'Contributing & Maintaining',
-      _: {
+      _engineering: {
         type: 'separator',
         title: 'Engineering'
       },
@@ -64,7 +64,7 @@ const meta: MetaRecord = {
           'training': 'Training & Certification'
         }
       },
-      _sales: {
+      _sales_separator: {
         type: 'separator',
         title: 'Sales'
       },
@@ -109,7 +109,7 @@ const meta: MetaRecord = {
           'reference-guides': 'Reference Guides for Technical Discussions'
         }
       },
-      __: {
+      _external: {
         type: 'separator',
         title: 'External'
       },
