@@ -1,0 +1,184 @@
+---
+title: VMware Deployment Checklist
+description: Step-by-step checklist for deploying OpenShift clusters on VMware vSphere infrastructure
+---
+
+# VMware Deployment Checklist
+
+This checklist provides a comprehensive guide for deploying OpenShift clusters on VMware vSphere infrastructure, ensuring consistent and reliable deployments.
+
+## Pre-Installation Planning
+
+### Infrastructure Requirements
+- [ ] **vSphere Environment**
+  - [ ] vCenter Server 7.0 or later
+  - [ ] ESXi hosts 7.0 or later
+  - [ ] Sufficient compute resources (CPU, RAM, storage)
+  - [ ] Network connectivity and VLAN configuration
+  - [ ] DNS resolution configured
+  - [ ] NTP synchronization enabled
+
+- [ ] **Storage Requirements**
+  - [ ] Datastore with sufficient capacity
+  - [ ] Storage policies configured
+  - [ ] Backup strategy defined
+  - [ ] Storage performance validated
+
+- [ ] **Network Requirements**
+  - [ ] Load balancer configuration
+  - [ ] Firewall rules configured
+  - [ ] Network segmentation planned
+  - [ ] IP address ranges allocated
+
+### Prerequisites Verification
+- [ ] **OpenShift Prerequisites**
+  - [ ] OpenShift installer downloaded
+  - [ ] Pull secret obtained
+  - [ ] SSH key pair generated
+  - [ ] Installation configuration files prepared
+
+- [ ] **VMware Prerequisites**
+  - [ ] vSphere credentials configured
+  - [ ] Resource pools created
+  - [ ] VM templates prepared
+  - [ ] Network port groups configured
+
+## Installation Process
+
+### 1. Infrastructure Setup
+- [ ] **vSphere Configuration**
+  - [ ] Create resource pools
+  - [ ] Configure datastores
+  - [ ] Set up network port groups
+  - [ ] Configure VM templates
+
+- [ ] **Network Configuration**
+  - [ ] Configure load balancer
+  - [ ] Set up DNS records
+  - [ ] Configure firewall rules
+  - [ ] Test network connectivity
+
+### 2. OpenShift Installation
+- [ ] **Bootstrap Process**
+  - [ ] Deploy bootstrap VM
+  - [ ] Start bootstrap process
+  - [ ] Monitor bootstrap logs
+  - [ ] Verify bootstrap completion
+
+- [ ] **Control Plane Installation**
+  - [ ] Deploy control plane nodes
+  - [ ] Configure control plane services
+  - [ ] Verify control plane health
+  - [ ] Complete control plane setup
+
+- [ ] **Worker Node Installation**
+  - [ ] Deploy worker nodes
+  - [ ] Configure worker services
+  - [ ] Verify worker node health
+  - [ ] Complete worker node setup
+
+### 3. Post-Installation Configuration
+- [ ] **Cluster Configuration**
+  - [ ] Configure cluster networking
+  - [ ] Set up storage classes
+  - [ ] Configure monitoring
+  - [ ] Set up logging
+
+- [ ] **Security Configuration**
+  - [ ] Configure RBAC
+  - [ ] Set up network policies
+  - [ ] Configure security contexts
+  - [ ] Enable audit logging
+
+## Validation and Testing
+
+### Cluster Health Checks
+- [ ] **Node Status**
+  - [ ] All nodes in Ready state
+  - [ ] No critical alerts
+  - [ ] Resource utilization normal
+  - [ ] Network connectivity verified
+
+- [ ] **Service Verification**
+  - [ ] Core services running
+  - [ ] API server accessible
+  - [ ] Web console functional
+  - [ ] Monitoring operational
+
+### Application Testing
+- [ ] **Basic Functionality**
+  - [ ] Deploy test application
+  - [ ] Verify pod scheduling
+  - [ ] Test service discovery
+  - [ ] Validate ingress routing
+
+- [ ] **Storage Testing**
+  - [ ] Create persistent volumes
+  - [ ] Test storage classes
+  - [ ] Verify backup functionality
+  - [ ] Test restore procedures
+
+## Documentation and Handover
+
+### Documentation Requirements
+- [ ] **Architecture Documentation**
+  - [ ] Network topology diagram
+  - [ ] Infrastructure layout
+  - [ ] Security configuration
+  - [ ] Backup procedures
+
+- [ ] **Operational Documentation**
+  - [ ] Runbook procedures
+  - [ ] Troubleshooting guide
+  - [ ] Maintenance procedures
+  - [ ] Contact information
+
+### Handover Activities
+- [ ] **Knowledge Transfer**
+  - [ ] Team training sessions
+  - [ ] Documentation review
+  - [ ] Procedure walkthrough
+  - [ ] Q&A sessions
+
+- [ ] **Access Management**
+  - [ ] User account setup
+  - [ ] Permission configuration
+  - [ ] Access documentation
+  - [ ] Security review
+
+## Troubleshooting
+
+### Common Issues
+- [ ] **Network Issues**
+  - [ ] DNS resolution problems
+  - [ ] Firewall configuration
+  - [ ] Load balancer issues
+  - [ ] VLAN configuration
+
+- [ ] **Storage Issues**
+  - [ ] Datastore connectivity
+  - [ ] Storage policy conflicts
+  - [ ] Performance issues
+  - [ ] Capacity problems
+
+### Support Resources
+- [ ] **Documentation**
+  - [ ] OpenShift documentation
+  - [ ] VMware documentation
+  - [ ] Internal runbooks
+  - [ ] Troubleshooting guides
+
+- [ ] **Support Contacts**
+  - [ ] OpenShift support
+  - [ ] VMware support
+  - [ ] Internal team contacts
+  - [ ] Escalation procedures
+
+---
+
+## Next Steps
+
+After completing this checklist, proceed to:
+- [Bare Metal Deployment Checklist](/checklists/openshift/baremetal)
+- [Hyperscaler Deployment Checklist](/checklists/openshift/hyperscaler)
+- [Main Deployment Checklist](/docs/deployment/deployment-checklist)

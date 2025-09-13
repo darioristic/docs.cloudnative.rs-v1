@@ -1,0 +1,686 @@
+# References and Templates
+
+Comprehensive collection of references, templates, and reusable resources for OpenShift deployment and operations.
+
+## Overview
+
+This section provides essential references, templates, and reusable resources to support OpenShift deployment, configuration, and ongoing operations. These materials serve as quick references and standardized templates for consistent implementation.
+
+## Quick Reference Guides
+
+### OpenShift CLI Commands
+```bash
+# Cluster Management
+oc cluster-info
+oc get nodes
+oc get pods --all-namespaces
+oc get services --all-namespaces
+
+# Authentication and Authorization
+oc login
+oc whoami
+oc auth can-i <verb> <resource>
+oc get users
+oc get groups
+
+# Project and Namespace Management
+oc new-project <project-name>
+oc get projects
+oc project <project-name>
+oc delete project <project-name>
+
+# Application Deployment
+oc new-app <image>
+oc get deployments
+oc scale deployment <name> --replicas=<number>
+oc rollout status deployment/<name>
+
+# Service and Route Management
+oc expose service <service-name>
+oc get routes
+oc get services
+oc describe service <service-name>
+
+# Resource Management
+oc get pv
+oc get pvc
+oc get storageclass
+oc get quota
+oc get limitrange
+
+# Monitoring and Debugging
+oc logs <pod-name>
+oc describe pod <pod-name>
+oc exec -it <pod-name> -- /bin/bash
+oc top nodes
+oc top pods
+```
+
+### Kubernetes API Resources
+```yaml
+# Pod
+apiVersion: v1
+kind: Pod
+metadata:
+  name: example-pod
+spec:
+  containers:
+  - name: example-container
+    image: nginx:latest
+    ports:
+    - containerPort: 80
+
+# Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: example
+  template:
+    metadata:
+      labels:
+        app: example
+    spec:
+      containers:
+      - name: example
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+
+# Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: example-service
+spec:
+  selector:
+    app: example
+  ports:
+  - port: 80
+    targetPort: 80
+  type: ClusterIP
+
+# Route
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: example-route
+spec:
+  to:
+    kind: Service
+    name: example-service
+  port:
+    targetPort: 80
+```
+
+## Configuration Templates
+
+### Storage Templates
+```yaml
+# Storage Class Template
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: fast-ssd
+provisioner: kubernetes.io/aws-ebs
+parameters:
+  type: gp3
+  iops: "3000"
+  throughput: "125"
+reclaimPolicy: Delete
+allowVolumeExpansion: true
+volumeBindingMode: WaitForFirstConsumer
+
+# Persistent Volume Claim Template
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: example-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: fast-ssd
+```
+
+### Security Templates
+```yaml
+# Network Policy Template
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: example-network-policy
+spec:
+  podSelector:
+    matchLabels:
+      app: example
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: allowed-namespace
+    ports:
+    - protocol: TCP
+      port: 80
+  egress:
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          name: allowed-namespace
+    ports:
+    - protocol: TCP
+      port: 443
+
+# Security Context Constraint Template
+apiVersion: security.openshift.io/v1
+kind: SecurityContextConstraints
+metadata:
+  name: example-scc
+allowHostDirVolumePlugin: false
+allowHostIPC: false
+allowHostNetwork: false
+allowHostPID: false
+allowHostPorts: false
+allowPrivilegedContainer: false
+allowedCapabilities: null
+defaultAddCapabilities: null
+fsGroup:
+  type: MustRunAs
+  ranges:
+  - min: 1000
+    max: 65535
+readOnlyRootFilesystem: false
+requiredDropCapabilities:
+- ALL
+runAsUser:
+  type: MustRunAsRange
+  uidRangeMin: 1000
+  uidRangeMax: 65535
+seLinuxContext:
+  type: MustRunAs
+volumes:
+- configMap
+- downwardAPI
+- emptyDir
+- persistentVolumeClaim
+- projected
+- secret
+```
+
+### Monitoring Templates
+```yaml
+# ServiceMonitor Template
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: example-servicemonitor
+  labels:
+    app: example
+spec:
+  selector:
+    matchLabels:
+      app: example
+  endpoints:
+  - port: metrics
+    path: /metrics
+    interval: 30s
+
+# PrometheusRule Template
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: example-rules
+  labels:
+    app: example
+spec:
+  groups:
+  - name: example.rules
+    rules:
+    - alert: ExampleAlert
+      expr: up{job="example"} == 0
+      for: 5m
+      labels:
+        severity: critical
+      annotations:
+        summary: "Example service is down"
+        description: "Example service has been down for more than 5 minutes"
+```
+
+## Deployment Templates
+
+### Application Deployment Template
+```yaml
+# Complete Application Template
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-app
+  labels:
+    app: example-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: example-app
+  template:
+    metadata:
+      labels:
+        app: example-app
+    spec:
+      containers:
+      - name: example-app
+        image: example/app:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: example-secret
+              key: database-url
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: example-app-service
+spec:
+  selector:
+    app: example-app
+  ports:
+  - port: 80
+    targetPort: 8080
+  type: ClusterIP
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: example-app-route
+spec:
+  to:
+    kind: Service
+    name: example-app-service
+  port:
+    targetPort: 80
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+```
+
+### Database Deployment Template
+```yaml
+# PostgreSQL Deployment Template
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgresql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgresql
+  template:
+    metadata:
+      labels:
+        app: postgresql
+    spec:
+      containers:
+      - name: postgresql
+        image: postgres:13
+        env:
+        - name: POSTGRES_DB
+          value: example
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: postgresql-secret
+              key: username
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgresql-secret
+              key: password
+        ports:
+        - containerPort: 5432
+        volumeMounts:
+        - name: postgresql-storage
+          mountPath: /var/lib/postgresql/data
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+      volumes:
+      - name: postgresql-storage
+        persistentVolumeClaim:
+          claimName: postgresql-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgresql-service
+spec:
+  selector:
+    app: postgresql
+  ports:
+  - port: 5432
+    targetPort: 5432
+  type: ClusterIP
+```
+
+## Operator Templates
+
+### Custom Resource Definition Template
+```yaml
+# CRD Template
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: exampleapps.example.com
+spec:
+  group: example.com
+  versions:
+  - name: v1
+    served: true
+    storage: true
+    schema:
+      openAPIV3Schema:
+        type: object
+        properties:
+          spec:
+            type: object
+            properties:
+              replicas:
+                type: integer
+                minimum: 1
+                maximum: 10
+              image:
+                type: string
+          status:
+            type: object
+            properties:
+              readyReplicas:
+                type: integer
+  scope: Namespaced
+  names:
+    plural: exampleapps
+    singular: exampleapp
+    kind: ExampleApp
+```
+
+### Operator Deployment Template
+```yaml
+# Operator Deployment Template
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-operator
+  namespace: example-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: example-operator
+  template:
+    metadata:
+      labels:
+        name: example-operator
+    spec:
+      serviceAccountName: example-operator
+      containers:
+      - name: example-operator
+        image: example/operator:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: WATCH_NAMESPACE
+          value: ""
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: OPERATOR_NAME
+          value: "example-operator"
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+```
+
+## Troubleshooting Templates
+
+### Diagnostic Script Template
+```bash
+#!/bin/bash
+# OpenShift Cluster Diagnostic Script
+
+echo "=== OpenShift Cluster Diagnostics ==="
+echo "Date: $(date)"
+echo "Cluster: $(oc cluster-info | grep 'Kubernetes master')"
+echo ""
+
+echo "=== Node Status ==="
+oc get nodes -o wide
+echo ""
+
+echo "=== Pod Status ==="
+oc get pods --all-namespaces | grep -v Running | grep -v Completed
+echo ""
+
+echo "=== Service Status ==="
+oc get services --all-namespaces
+echo ""
+
+echo "=== Storage Status ==="
+oc get pv
+oc get pvc --all-namespaces
+echo ""
+
+echo "=== Network Status ==="
+oc get networkpolicies --all-namespaces
+echo ""
+
+echo "=== Recent Events ==="
+oc get events --all-namespaces --sort-by='.lastTimestamp' | tail -20
+echo ""
+
+echo "=== Resource Usage ==="
+oc top nodes
+oc top pods --all-namespaces | head -20
+echo ""
+
+echo "=== Cluster Operators ==="
+oc get clusteroperators
+echo ""
+
+echo "=== Cluster Version ==="
+oc get clusterversion
+echo ""
+
+echo "Diagnostics completed at $(date)"
+```
+
+### Health Check Script Template
+```bash
+#!/bin/bash
+# OpenShift Health Check Script
+
+check_cluster_health() {
+    echo "Checking cluster health..."
+    
+    # Check if cluster is accessible
+    if ! oc cluster-info &> /dev/null; then
+        echo "ERROR: Cannot access cluster"
+        return 1
+    fi
+    
+    # Check node status
+    if oc get nodes | grep -q "NotReady"; then
+        echo "WARNING: Some nodes are not ready"
+        return 1
+    fi
+    
+    # Check pod status
+    if oc get pods --all-namespaces | grep -q "Error\|CrashLoopBackOff"; then
+        echo "WARNING: Some pods are in error state"
+        return 1
+    fi
+    
+    echo "Cluster health check passed"
+    return 0
+}
+
+check_storage_health() {
+    echo "Checking storage health..."
+    
+    # Check PV status
+    if oc get pv | grep -q "Failed"; then
+        echo "WARNING: Some persistent volumes failed"
+        return 1
+    fi
+    
+    # Check PVC status
+    if oc get pvc --all-namespaces | grep -q "Pending"; then
+        echo "WARNING: Some persistent volume claims are pending"
+        return 1
+    fi
+    
+    echo "Storage health check passed"
+    return 0
+}
+
+check_network_health() {
+    echo "Checking network health..."
+    
+    # Check DNS
+    if ! oc run test-dns --image=busybox --rm -it --restart=Never -- nslookup kubernetes.default &> /dev/null; then
+        echo "ERROR: DNS resolution failed"
+        return 1
+    fi
+    
+    # Check service connectivity
+    if ! oc run test-connectivity --image=busybox --rm -it --restart=Never -- wget -qO- http://kubernetes.default &> /dev/null; then
+        echo "ERROR: Service connectivity failed"
+        return 1
+    fi
+    
+    echo "Network health check passed"
+    return 0
+}
+
+# Run all health checks
+main() {
+    echo "Starting OpenShift health checks..."
+    echo "=================================="
+    
+    check_cluster_health
+    check_storage_health
+    check_network_health
+    
+    echo "=================================="
+    echo "Health checks completed"
+}
+
+main "$@"
+```
+
+## Best Practices Reference
+
+### Security Best Practices
+- **Pod Security**
+  - Use non-root containers
+  - Implement security contexts
+  - Apply network policies
+  - Regular security scanning
+
+- **RBAC Best Practices**
+  - Principle of least privilege
+  - Regular access reviews
+  - Group-based permissions
+  - Audit logging
+
+### Performance Best Practices
+- **Resource Management**
+  - Set appropriate resource requests
+  - Use resource limits
+  - Monitor resource utilization
+  - Implement horizontal pod autoscaling
+
+- **Storage Best Practices**
+  - Use appropriate storage classes
+  - Implement backup strategies
+  - Monitor storage usage
+  - Regular cleanup
+
+### Operational Best Practices
+- **Monitoring**
+  - Comprehensive monitoring setup
+  - Proactive alerting
+  - Regular health checks
+  - Performance monitoring
+
+- **Documentation**
+  - Keep documentation updated
+  - Document procedures
+  - Maintain runbooks
+  - Regular reviews
+
+## Useful Links and Resources
+
+### Official Documentation
+- [OpenShift Documentation](https://docs.openshift.com/)
+- [Kubernetes Documentation](https://kubernetes.io/docs/)
+- [Red Hat OpenShift](https://www.redhat.com/en/technologies/cloud-computing/openshift)
+
+### Community Resources
+- [OpenShift Community](https://www.openshift.com/community)
+- [Kubernetes Community](https://kubernetes.io/community/)
+- [CNCF Landscape](https://landscape.cncf.io/)
+
+### Tools and Utilities
+- [OpenShift CLI](https://docs.openshift.com/container-platform/latest/cli_reference/openshift_cli/)
+- [kubectl](https://kubernetes.io/docs/reference/kubectl/)
+- [Helm](https://helm.sh/)
+- [Operator SDK](https://sdk.operatorframework.io/)
+
+## Next Steps
+
+After reviewing references and templates:
+
+1. **Customize Templates** - Adapt templates for your specific needs
+2. **Implement Best Practices** - Apply recommended practices
+3. **Plan Production Deployment** - Prepare for go-live
+
+This comprehensive reference collection provides essential resources for successful OpenShift operations.

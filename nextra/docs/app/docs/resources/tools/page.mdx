@@ -1,0 +1,340 @@
+# Tools & Utilities
+
+This page provides a comprehensive collection of tools and utilities essential for OpenShift deployment, management, monitoring, and troubleshooting across different environments.
+
+## Deployment & Installation Tools
+
+### OpenShift Installation
+
+#### OpenShift Installer
+- **Purpose**: Automated OpenShift cluster installation
+- **Environments**: VMware, bare metal, hyperscalers
+- **Key Features**: 
+  - Infrastructure provisioning
+  - Cluster configuration
+  - Post-installation validation
+- **Documentation**: [OpenShift Installation Guide](https://docs.openshift.com/container-platform/latest/installing/index.html)
+
+#### Assisted Installer
+- **Purpose**: Web-based OpenShift installation for edge and disconnected environments
+- **Use Cases**: Remote sites, air-gapped environments
+- **Key Features**:
+  - GUI-based installation
+  - Minimal infrastructure requirements
+  - Disconnected installation support
+
+#### Red Hat Advanced Cluster Management (RHACM)
+- **Purpose**: Multi-cluster management and governance
+- **Key Features**:
+  - Centralized cluster management
+  - Policy enforcement
+  - Application lifecycle management
+  - Disaster recovery orchestration
+
+### Infrastructure Provisioning
+
+#### Terraform Providers
+- **OpenShift Provider**: Infrastructure as Code for OpenShift
+- **VMware Provider**: vSphere resource management
+- **Cloud Providers**: AWS, Azure, GCP integration
+- **Use Cases**: Automated infrastructure provisioning
+
+#### Ansible Playbooks
+- **OpenShift Collection**: Red Hat Ansible Automation Platform
+- **Infrastructure Automation**: Server configuration and management
+- **Application Deployment**: Automated application lifecycle
+- **Compliance**: Security hardening and configuration management
+
+## Monitoring & Observability Tools
+
+### Metrics Collection
+
+#### Prometheus Operator
+- **Purpose**: Kubernetes-native monitoring
+- **Key Features**:
+  - Service discovery
+  - Alerting rules
+  - Recording rules
+  - High availability
+- **Integration**: Built into OpenShift
+
+#### Thanos
+- **Purpose**: Long-term metrics storage and global querying
+- **Key Features**:
+  - Unlimited retention
+  - Global query view
+  - Downsampling
+  - Multi-cluster support
+
+### Logging & Analysis
+
+#### OpenShift Logging (EFK Stack)
+- **Components**:
+  - Elasticsearch: Log storage and indexing
+  - Fluentd: Log collection and forwarding
+  - Kibana: Log visualization and analysis
+- **Alternative**: Loki for lightweight logging
+
+#### Log Aggregation Tools
+- **Splunk**: Enterprise log management
+- **ELK Stack**: Open-source log analytics
+- **Fluentd/Fluent Bit**: Log collection and forwarding
+- **Vector**: High-performance log router
+
+### Tracing & APM
+
+#### Jaeger
+- **Purpose**: Distributed tracing for microservices
+- **Key Features**:
+  - Distributed context propagation
+  - Root cause analysis
+  - Performance monitoring
+  - Service dependency mapping
+
+#### OpenTelemetry
+- **Purpose**: Observability framework
+- **Key Features**:
+  - Unified observability
+  - Vendor-neutral APIs
+  - Auto-instrumentation
+  - Multiple language support
+
+## Security Tools
+
+### Vulnerability Scanning
+
+#### Trivy
+- **Purpose**: Container and Kubernetes security scanning
+- **Key Features**:
+  - Vulnerability detection
+  - Configuration scanning
+  - License compliance
+  - CI/CD integration
+
+#### OpenSCAP
+- **Purpose**: Security compliance scanning
+- **Key Features**:
+  - SCAP content scanning
+  - Compliance reporting
+  - Automated remediation
+  - Policy enforcement
+
+### Access Management
+
+#### Red Hat Single Sign-On (RH-SSO)
+- **Purpose**: Identity and access management
+- **Key Features**:
+  - Single sign-on
+  - Multi-factor authentication
+  - Identity federation
+  - User provisioning
+
+#### OAuth2/OIDC Providers
+- **Keycloak**: Open-source identity management
+- **Azure AD**: Microsoft identity platform
+- **Google Identity**: Google authentication
+- **AWS IAM**: Amazon identity services
+
+### Network Security
+
+#### Calico
+- **Purpose**: Kubernetes network security
+- **Key Features**:
+  - Network policies
+  - Service mesh
+  - Network observability
+  - Multi-cluster networking
+
+#### Cilium
+- **Purpose**: eBPF-based networking and security
+- **Key Features**:
+  - Layer 7 security
+  - Service mesh
+  - Network observability
+  - Load balancing
+
+## Backup & Recovery Tools
+
+### Data Protection
+
+#### Velero
+- **Purpose**: Kubernetes backup and disaster recovery
+- **Key Features**:
+  - Cluster backup
+  - Application backup
+  - Cross-cloud migration
+  - Scheduled backups
+
+#### OpenShift Data Foundation (ODF)
+- **Purpose**: Software-defined storage
+- **Key Features**:
+  - Multi-cloud storage
+  - Data protection
+  - Disaster recovery
+  - Backup and restore
+
+### Disaster Recovery
+
+#### Red Hat Advanced Cluster Management (RHACM)
+- **Purpose**: Multi-cluster disaster recovery
+- **Key Features**:
+  - Application failover
+  - Data replication
+  - Automated recovery
+  - Cross-region deployment
+
+#### OpenShift GitOps (ArgoCD)
+- **Purpose**: Git-based continuous deployment
+- **Key Features**:
+  - GitOps workflows
+  - Multi-cluster deployment
+  - Application synchronization
+  - Rollback capabilities
+
+## Development & CI/CD Tools
+
+### Source Control
+
+#### Git Platforms
+- **GitHub**: Code repository and collaboration
+- **GitLab**: DevOps platform
+- **Bitbucket**: Atlassian Git solution
+- **Gitea**: Self-hosted Git service
+
+#### GitOps Tools
+- **ArgoCD**: GitOps continuous delivery
+- **Flux**: GitOps toolkit
+- **Tekton**: Cloud-native CI/CD
+- **Jenkins X**: Kubernetes-native CI/CD
+
+### Container Development
+
+#### Buildah
+- **Purpose**: Container image building
+- **Key Features**:
+  - Rootless builds
+  - Multi-stage builds
+  - Image signing
+  - OCI compliance
+
+#### Podman
+- **Purpose**: Container runtime
+- **Key Features**:
+  - Rootless containers
+  - Pod support
+  - Docker compatibility
+  - Systemd integration
+
+#### Skopeo
+- **Purpose**: Container image operations
+- **Key Features**:
+  - Image copying
+  - Format conversion
+  - Image inspection
+  - Registry operations
+
+## Operational Tools
+
+### Troubleshooting
+
+#### OpenShift CLI (oc)
+- **Purpose**: Command-line interface for OpenShift
+- **Key Features**:
+  - Cluster management
+  - Application deployment
+  - Resource inspection
+  - Debugging utilities
+
+#### kubectl
+- **Purpose**: Kubernetes command-line tool
+- **Key Features**:
+  - Resource management
+  - Debugging
+  - Port forwarding
+  - Log access
+
+#### OpenShift Web Console
+- **Purpose**: Web-based cluster management
+- **Key Features**:
+  - Visual cluster overview
+  - Application management
+  - Monitoring dashboards
+  - Developer tools
+
+### Performance Analysis
+
+#### Prometheus Query Language (PromQL)
+- **Purpose**: Metrics querying and analysis
+- **Key Features**:
+  - Time-series queries
+  - Aggregation functions
+  - Alerting conditions
+  - Dashboard creation
+
+#### Grafana
+- **Purpose**: Metrics visualization and dashboards
+- **Key Features**:
+  - Interactive dashboards
+  - Alerting
+  - Data source integration
+  - Plugin ecosystem
+
+## Utility Scripts & Automation
+
+### Cluster Management Scripts
+
+#### Cluster Health Checks
+- **Purpose**: Automated cluster validation
+- **Components**:
+  - Node status verification
+  - Pod health checks
+  - Service connectivity tests
+  - Resource utilization monitoring
+
+#### Backup Automation
+- **Purpose**: Scheduled backup operations
+- **Components**:
+  - Velero backup scheduling
+  - Configuration backup
+  - Data export automation
+  - Retention management
+
+### Development Utilities
+
+#### Code Generation Tools
+- **OpenAPI Generator**: API client generation
+- **Kubernetes Code Generator**: Custom resource generation
+- **Helm Chart Generator**: Chart scaffolding
+- **Operator SDK**: Operator framework
+
+#### Testing Tools
+- **Kubernetes Test Framework**: Integration testing
+- **Chaos Engineering**: Resilience testing
+- **Performance Testing**: Load and stress testing
+- **Security Testing**: Vulnerability assessment
+
+## Tool Selection Guidelines
+
+### Choosing the Right Tools
+
+When selecting tools for your OpenShift environment, consider:
+
+- **Compatibility**: Ensure tools work with your OpenShift version
+- **Integration**: Evaluate integration with existing toolchain
+- **Scalability**: Consider growth and performance requirements
+- **Support**: Verify vendor support and community backing
+- **Security**: Assess security features and compliance requirements
+
+### Tool Management Best Practices
+
+- **Version Control**: Track tool versions and updates
+- **Documentation**: Maintain usage documentation and runbooks
+- **Training**: Ensure team members are trained on tool usage
+- **Monitoring**: Monitor tool performance and resource usage
+- **Backup**: Include tools in backup and disaster recovery plans
+
+## Conclusion
+
+The right tools and utilities are essential for successful OpenShift operations. This collection provides a foundation for deployment, monitoring, security, and ongoing management. Regular evaluation and updates ensure tools remain current and effective for your specific requirements.
+
+Remember to customize tool selection based on your environment, compliance requirements, and operational needs. Regular training and documentation updates ensure teams can effectively utilize these tools for optimal results.

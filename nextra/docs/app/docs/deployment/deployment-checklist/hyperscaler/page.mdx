@@ -1,0 +1,318 @@
+---
+title: Hyperscaler Deployment Checklist
+description: Step-by-step checklist for deploying OpenShift clusters on hyperscaler cloud platforms (AWS, Azure, GCP)
+---
+
+# Hyperscaler Deployment Checklist
+
+This checklist provides a comprehensive guide for deploying OpenShift clusters on hyperscaler cloud platforms, ensuring scalable and cost-effective deployments.
+
+## Pre-Installation Planning
+
+### Cloud Platform Selection
+- [ ] **Platform Requirements**
+  - [ ] AWS (Amazon Web Services)
+  - [ ] Azure (Microsoft Azure)
+  - [ ] GCP (Google Cloud Platform)
+  - [ ] Multi-cloud strategy (if applicable)
+  - [ ] Compliance requirements
+  - [ ] Cost optimization
+
+### Infrastructure Requirements
+- [ ] **Compute Resources**
+  - [ ] Instance types selected
+  - [ ] Minimum 3 control plane nodes
+  - [ ] Minimum 3 worker nodes
+  - [ ] Auto-scaling groups configured
+  - [ ] Spot instances (if applicable)
+  - [ ] Reserved instances (if applicable)
+
+- [ ] **Storage Requirements**
+  - [ ] Block storage volumes
+  - [ ] Object storage buckets
+  - [ ] Storage classes configured
+  - [ ] Backup storage
+  - [ ] Data encryption
+
+- [ ] **Network Requirements**
+  - [ ] VPC/VNet configuration
+  - [ ] Subnet allocation
+  - [ ] Security groups/NSGs
+  - [ ] Load balancer setup
+  - [ ] DNS configuration
+
+## Cloud-Specific Setup
+
+### AWS Deployment
+- [ ] **AWS Prerequisites**
+  - [ ] AWS account configured
+  - [ ] IAM roles and policies
+  - [ ] VPC and subnets created
+  - [ ] Security groups configured
+  - [ ] Route 53 DNS setup
+  - [ ] S3 buckets for assets
+
+- [ ] **AWS Services**
+  - [ ] EC2 instances
+  - [ ] EBS volumes
+  - [ ] ELB load balancer
+  - [ ] CloudWatch monitoring
+  - [ ] IAM service accounts
+  - [ ] S3 object storage
+
+### Azure Deployment
+- [ ] **Azure Prerequisites**
+  - [ ] Azure subscription
+  - [ ] Resource groups
+  - [ ] Virtual networks
+  - [ ] Network security groups
+  - [ ] Azure DNS
+  - [ ] Storage accounts
+
+- [ ] **Azure Services**
+  - [ ] Virtual machines
+  - [ ] Managed disks
+  - [ ] Load balancer
+  - [ ] Monitor and Log Analytics
+  - [ ] Managed identities
+  - [ ] Blob storage
+
+### GCP Deployment
+- [ ] **GCP Prerequisites**
+  - [ ] GCP project
+  - [ ] Service accounts
+  - [ ] VPC networks
+  - [ ] Firewall rules
+  - [ ] Cloud DNS
+  - [ ] Cloud Storage buckets
+
+- [ ] **GCP Services**
+  - [ ] Compute Engine instances
+  - [ ] Persistent disks
+  - [ ] Load balancer
+  - [ ] Cloud Monitoring
+  - [ ] Workload Identity
+  - [ ] Cloud Storage
+
+## Installation Process
+
+### 1. Cloud Infrastructure Setup
+- [ ] **Network Configuration**
+  - [ ] VPC/VNet creation
+  - [ ] Subnet configuration
+  - [ ] Security group/NSG rules
+  - [ ] Load balancer setup
+  - [ ] DNS configuration
+
+- [ ] **Storage Configuration**
+  - [ ] Storage accounts/buckets
+  - [ ] Storage classes
+  - [ ] Backup configuration
+  - [ ] Encryption setup
+
+### 2. OpenShift Installation
+- [ ] **Bootstrap Process**
+  - [ ] Bootstrap instance creation
+  - [ ] Installation files upload
+  - [ ] Bootstrap process start
+  - [ ] Bootstrap monitoring
+
+- [ ] **Control Plane Installation**
+  - [ ] Control plane instances
+  - [ ] Control plane services
+  - [ ] Health verification
+  - [ ] Configuration completion
+
+- [ ] **Worker Node Installation**
+  - [ ] Worker node instances
+  - [ ] Worker services
+  - [ ] Health verification
+  - [ ] Configuration completion
+
+### 3. Cloud Integration
+- [ ] **Cloud Services Integration**
+  - [ ] Load balancer configuration
+  - [ ] DNS record creation
+  - [ ] Storage integration
+  - [ ] Monitoring setup
+
+- [ ] **Security Configuration**
+  - [ ] IAM/Identity configuration
+  - [ ] Network security
+  - [ ] Encryption setup
+  - [ ] Access controls
+
+## Configuration and Optimization
+
+### 1. Cluster Configuration
+- [ ] **Core Services**
+  - [ ] API server configuration
+  - [ ] Scheduler configuration
+  - [ ] Controller manager
+  - [ ] etcd configuration
+
+- [ ] **Cloud-Specific Features**
+  - [ ] Cloud provider integration
+  - [ ] Auto-scaling configuration
+  - [ ] Spot instance handling
+  - [ ] Multi-zone deployment
+
+### 2. Storage Configuration
+- [ ] **Storage Classes**
+  - [ ] Cloud storage classes
+  - [ ] Storage policies
+  - [ ] Backup configuration
+  - [ ] Monitoring setup
+
+- [ ] **Data Management**
+  - [ ] Backup procedures
+  - [ ] Disaster recovery
+  - [ ] Data retention
+  - [ ] Cross-region replication
+
+### 3. Security Configuration
+- [ ] **Access Control**
+  - [ ] RBAC configuration
+  - [ ] Cloud IAM integration
+  - [ ] Service accounts
+  - [ ] Network policies
+
+- [ ] **Data Protection**
+  - [ ] Encryption at rest
+  - [ ] Encryption in transit
+  - [ ] Key management
+  - [ ] Compliance controls
+
+## Validation and Testing
+
+### 1. Cluster Health Verification
+- [ ] **Node Status**
+  - [ ] All nodes Ready
+  - [ ] Resource utilization
+  - [ ] Network connectivity
+  - [ ] Storage availability
+
+- [ ] **Service Health**
+  - [ ] Core services running
+  - [ ] API server accessible
+  - [ ] Web console functional
+  - [ ] Monitoring operational
+
+### 2. Cloud Integration Testing
+- [ ] **Cloud Services**
+  - [ ] Load balancer functionality
+  - [ ] DNS resolution
+  - [ ] Storage operations
+  - [ ] Monitoring data
+
+- [ ] **Auto-scaling Testing**
+  - [ ] Scale-up scenarios
+  - [ ] Scale-down scenarios
+  - [ ] Spot instance handling
+  - [ ] Multi-zone failover
+
+### 3. Performance Testing
+- [ ] **Load Testing**
+  - [ ] CPU utilization
+  - [ ] Memory usage
+  - [ ] Network throughput
+  - [ ] Storage I/O
+
+- [ ] **Cost Optimization**
+  - [ ] Resource utilization
+  - [ ] Cost monitoring
+  - [ ] Right-sizing
+  - [ ] Reserved instances
+
+## Monitoring and Maintenance
+
+### 1. Cloud Monitoring
+- [ ] **Monitoring Setup**
+  - [ ] Cloud monitoring services
+  - [ ] Custom dashboards
+  - [ ] Alert configuration
+  - [ ] Log aggregation
+
+- [ ] **Cost Monitoring**
+  - [ ] Cost tracking
+  - [ ] Budget alerts
+  - [ ] Resource optimization
+  - [ ] Usage analysis
+
+### 2. Maintenance Procedures
+- [ ] **Regular Maintenance**
+  - [ ] System updates
+  - [ ] Security patches
+  - [ ] Performance tuning
+  - [ ] Capacity management
+
+- [ ] **Cloud-Specific Maintenance**
+  - [ ] Instance type updates
+  - [ ] Storage optimization
+  - [ ] Network optimization
+  - [ ] Cost optimization
+
+## Documentation and Handover
+
+### 1. Technical Documentation
+- [ ] **Architecture Documentation**
+  - [ ] Cloud architecture
+  - [ ] Network topology
+  - [ ] Storage configuration
+  - [ ] Security policies
+
+- [ ] **Operational Documentation**
+  - [ ] Runbook procedures
+  - [ ] Troubleshooting guides
+  - [ ] Maintenance schedules
+  - [ ] Cost management
+
+### 2. Knowledge Transfer
+- [ ] **Team Training**
+  - [ ] Cloud platform training
+  - [ ] OpenShift training
+  - [ ] Cost management
+  - [ ] Best practices
+
+- [ ] **Handover Activities**
+  - [ ] Documentation review
+  - [ ] Access provisioning
+  - [ ] Support procedures
+  - [ ] Escalation paths
+
+## Troubleshooting
+
+### 1. Common Issues
+- [ ] **Cloud-Specific Issues**
+  - [ ] Instance failures
+  - [ ] Network connectivity
+  - [ ] Storage issues
+  - [ ] Service limits
+
+- [ ] **OpenShift Issues**
+  - [ ] Service failures
+  - [ ] Configuration errors
+  - [ ] Resource constraints
+  - [ ] Security issues
+
+### 2. Support Resources
+- [ ] **Documentation**
+  - [ ] OpenShift documentation
+  - [ ] Cloud platform documentation
+  - [ ] Internal procedures
+  - [ ] Troubleshooting guides
+
+- [ ] **Support Contacts**
+  - [ ] OpenShift support
+  - [ ] Cloud platform support
+  - [ ] Internal team contacts
+  - [ ] Escalation procedures
+
+---
+
+## Next Steps
+
+After completing this checklist, proceed to:
+- [VMware Deployment Checklist](/checklists/openshift/vmware)
+- [Bare Metal Deployment Checklist](/checklists/openshift/baremetal)
+- [Main Deployment Checklist](/docs/deployment/deployment-checklist)

@@ -1,0 +1,92 @@
+---
+sidebarTitle: Overview
+---
+
+# Overview
+
+This section provides guidance on **installing and configuring OpenShift clusters** for enterprise clients. It covers prerequisites, planning, deployment strategies, and post-installation validation. It is maintained by the **Engineering Team** and intended for platform engineers and system administrators responsible for delivering secure, scalable, and reliable OpenShift environments.
+
+---
+
+## 1. Pre-Installation Planning
+- **Requirements Gathering**  
+  - Client objectives: workloads, compliance, high availability, and scaling needs.  
+  - Hardware and virtualization requirements: CPU, RAM, storage, network topology.  
+  - Security and compliance constraints: firewalls, access policies, audit requirements.
+
+- **Environment Design**  
+  - Decide on cluster topology: single-region, multi-region, high-availability setup.  
+  - Determine network layout: VLANs, subnets, load balancers, and ingress/egress rules.  
+  - Storage planning: persistent volume strategy, storage classes, and backups.  
+
+- **OpenShift Versioning and Licensing**  
+  - Confirm the OpenShift version based on client requirements.  
+  - License management and subscription setup.  
+  - Plan for future upgrades and patch cycles.
+
+---
+
+## 2. Prerequisites and Preparation
+- Hardware provisioning or virtual machine configuration.  
+- DNS setup and certificate management for cluster components.  
+- Firewall and port requirements for control plane and worker nodes.  
+- Installation of required tools on bootstrap machines (e.g., `openshift-install`, `oc` CLI).  
+- Validation of connectivity between nodes, load balancers, and external services.
+
+---
+
+## 3. Installation Methods
+- **IPI (Installer Provisioned Infrastructure)**  
+  - Automates infrastructure setup on supported cloud providers (AWS, Azure, GCP).  
+  - Recommended for new cloud deployments where automation is preferred.  
+
+- **UPI (User Provisioned Infrastructure)**  
+  - Manual infrastructure setup for advanced or on-premises environments.  
+  - Allows full control over network, storage, and nodes configuration.  
+
+- **Bare Metal / On-Prem Installation**  
+  - Considerations for physical servers: node sizing, networking, and storage.  
+  - Integration with virtualization or hyperconverged environments if required.
+
+---
+
+## 4. Cluster Configuration
+- Setting up **control plane and worker nodes**.  
+- Configuring **high availability** and **load balancing**.  
+- Networking configuration: SDN, ingress controllers, and service routing.  
+- Security hardening: RBAC policies, SELinux, audit logging, and pod security policies.  
+- Authentication and identity providers: LDAP, Active Directory, OAuth.  
+
+---
+
+## 5. Post-Installation Validation
+- Verify cluster health using `oc` commands and OpenShift console.  
+- Validate node status, networking, storage, and API access.  
+- Test cluster upgrade and rollback procedures in a controlled environment.  
+- Configure monitoring and alerting for cluster metrics.  
+
+---
+
+## 6. Documentation and Handover
+- Create a deployment report including:
+  - Cluster architecture diagram.  
+  - Node specifications and configurations.  
+  - Networking and storage details.  
+  - Security and compliance settings.  
+
+- Provide **handover materials** to client operations teams:
+  - Admin and developer access instructions.  
+  - Maintenance and upgrade guidelines.  
+  - Runbooks for common operational tasks.  
+
+---
+
+## 7. References and Templates
+- Sample installation manifests (UPI and IPI).  
+- Checklist for pre-installation readiness.  
+- Standard post-installation validation scripts.  
+- Links to internal playbooks, troubleshooting guides, and training resources.
+
+---
+
+This section ensures that every OpenShift cluster installation is **standardized, repeatable, and aligned with enterprise best practices**, while providing the engineering team with a clear framework to plan, deploy, and hand over production-ready environments.

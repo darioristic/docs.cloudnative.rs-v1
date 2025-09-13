@@ -1,0 +1,77 @@
+---
+title: Observability
+description: Observability practices, tooling, and integrations for OpenShift clusters
+asIndexPage: true
+---
+
+# Observability in OpenShift
+
+The **Observability** section describes how we implement, operate, and extend observability for OpenShift clusters across VMware, bare metal, and hyperscaler environments.  
+OpenShift provides a strong foundation for monitoring and logging, but enterprise usage requires **structured practices, custom integrations, and advanced tuning** to ensure reliability, performance, and compliance.  
+
+---
+
+## Why Observability in OpenShift Is Different
+
+OpenShift is not just Kubernetes — it adds platform services, operators, and developer-focused components. This increases complexity and requires **observability beyond standard cluster metrics**.  
+Key challenges include:  
+
+- Monitoring both **Kubernetes components and OpenShift operators**.  
+- Correlating **application workloads** with **cluster infrastructure**.  
+- Integrating OpenShift-native tools with **enterprise observability platforms**.  
+- Handling **multi-cluster and hybrid-cloud topologies**.  
+
+---
+
+## Built-In OpenShift Capabilities
+
+OpenShift ships with a pre-integrated observability stack:  
+
+- **Prometheus Operator** – manages metrics collection and alerting.  
+- **Grafana** – dashboards for visualizing cluster health and workloads.  
+- **Alertmanager** – routing and escalation of alerts.  
+- **Cluster Monitoring Operator** – configures monitoring for control plane and user workloads.  
+- **OpenShift Logging (EFK or Loki)** – centralized logging for cluster components and applications.  
+
+These provide a solid baseline but often require **customization and scaling** for production.  
+
+---
+
+## Our Observability Framework
+
+For enterprise deployments, we extend OpenShift's defaults with:  
+
+- **Metrics**  
+  - SLA/SLO-driven alerting  
+  - Custom workload dashboards for customer applications  
+  - Long-term metrics storage (e.g., Thanos)  
+
+- **Logs**  
+  - Centralized log aggregation with ElasticSearch or Loki  
+  - Forwarding logs to external SIEM/SOC systems  
+  - Retention and compliance management  
+
+- **Traces**  
+  - Jaeger Operator for distributed tracing  
+  - Integration with OpenTelemetry  
+  - Correlation between traces, metrics, and logs  
+
+---
+
+## Who Owns Observability
+
+- **Engineering Team** – maintains and extends the OpenShift observability stack, ensures integration with enterprise monitoring systems, and owns operational playbooks.  
+- **Sales & Customer Success** – use observability reports and SLA dashboards to demonstrate platform reliability and transparency to clients.  
+
+---
+
+## How to Use This Section
+
+This section includes:  
+
+- **Checklists** for setting up observability during cluster installation.  
+- **Playbooks** for troubleshooting alerts, logs, and performance issues.  
+- **Dashboards & Alerting Templates** for standard OpenShift environments.  
+- **Best Practices** for scaling observability in VMware, bare metal, and hyperscaler deployments.  
+
+Observability in OpenShift is not optional — it is the backbone of **Day-2 operations** and the key enabler for delivering trust to enterprise clients.  

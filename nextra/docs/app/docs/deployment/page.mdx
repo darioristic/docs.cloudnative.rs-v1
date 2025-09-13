@@ -1,0 +1,83 @@
+---
+asIndexPage: true
+sidebarTitle: Deployment
+---
+
+# Deployment (OpenShift)
+
+This section provides detailed guidance on deploying and managing applications and platforms using **OpenShift**, ensuring security, scalability, and consistency across all environments. It is maintained by the **Engineering Team** and is intended for engineers, platform operators, and anyone involved in deploying cloud-native solutions.
+
+---
+
+## 1. OpenShift Platform Overview
+- Key concepts: Projects, Namespaces, Operators, Pods, Services, Routes, ConfigMaps, Secrets.
+- Cluster architecture: control plane, worker nodes, and networking.
+- Multi-environment setup: development, staging, production.
+- OpenShift versions and upgrade policies.
+
+---
+
+## 2. Deployment Standards
+- **Application Deployment Guidelines**  
+  - Use declarative manifests (YAML/Helm) for all deployments.  
+  - Follow standardized labels and annotations for monitoring, billing, and governance.  
+  - Avoid manual edits in production; all changes should go through CI/CD pipelines.
+
+- **Infrastructure Deployment**  
+  - Infrastructure as Code (IaC) with Ansible or Terraform for cluster provisioning.  
+  - Standardized cluster configurations (node sizing, storage classes, networking).  
+  - Security hardening following CIS/OpenShift benchmarks.
+
+- **Environment Management**  
+  - Separate namespaces per environment (dev, staging, prod).  
+  - Environment-specific configurations handled via ConfigMaps and Secrets.  
+  - Promotion workflow: dev → staging → prod.
+
+---
+
+## 3. CI/CD Pipelines
+- Recommended CI/CD tools: Jenkins, GitHub Actions, OpenShift Pipelines (Tekton).  
+- Pipeline best practices:
+  - Automated builds for all commits in the main branch.  
+  - Image scanning for security vulnerabilities before deployment.  
+  - Automated tests and linting in the pipeline.  
+  - Canary or blue/green deployment strategies for production.  
+
+- **Pipeline Templates**
+  - Shared reusable templates for application build and deployment.  
+  - Examples for microservices, web apps, and batch jobs.
+
+---
+
+## 4. Security and Compliance
+- Use **Role-Based Access Control (RBAC)** for cluster access.  
+- Secrets management: never commit secrets to Git; use OpenShift Secrets or external vaults.  
+- Network policies to enforce pod-to-pod and namespace-to-namespace communication rules.  
+- Audit logs and monitoring for compliance and traceability.
+
+---
+
+## 5. Monitoring and Observability
+- Integrate with OpenShift Monitoring stack (Prometheus, Grafana).  
+- Standard metrics for deployment health, application performance, and resource usage.  
+- Alerts configuration and incident response procedures.  
+- Logging setup via Elasticsearch / Fluentd / Kibana (EFK) stack.
+
+---
+
+## 6. Rollback and Recovery
+- Automated rollback procedures in case of failed deployments.  
+- Backup strategies for cluster state, persistent volumes, and critical configurations.  
+- Documentation of previous deployment versions for auditing and troubleshooting.
+
+---
+
+## 7. Templates and References
+- Sample YAML manifests for common services.  
+- Pre-configured OpenShift project templates.  
+- CI/CD pipeline templates for Tekton/Jenkins.  
+- Links to internal playbooks, best practices, and training materials.
+
+---
+
+This section ensures that all OpenShift deployments are **consistent, repeatable, and secure**, while providing the Engineering team with practical guidance for daily operations and collaboration with other teams.
