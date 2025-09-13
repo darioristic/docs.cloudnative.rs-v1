@@ -2,7 +2,7 @@ import type { MetaRecord } from 'nextra'
 
 const meta: MetaRecord = {
   docs: {
-    type: 'page',
+    type: 'menu',
     title: 'Documentation',
     items: {
       'get-started-section': {
@@ -16,99 +16,19 @@ const meta: MetaRecord = {
         type: 'separator',
         title: 'Engineering'
       },
-      'deployment': {
-        title: 'Deployment',
-        items: {
-          'openshift-deployment': {
-            title: 'OpenShift Deployment',
-            items: {
-              'overview': 'Overview',
-              'pre-installation-planning': 'Pre-Installation Planning',
-              'prerequisites-preparation': 'Prerequisites and Preparation',
-              'installation-methods': 'Installation Methods',
-              'cluster-configuration': 'Cluster Configuration',
-              'post-installation-validation': 'Post-Installation Validation',
-              'documentation-handover': 'Documentation and Handover',
-              'references-templates': 'References and Templates'
-            }
-          },
-          'deployment-checklist': {
-            title: 'Deployment Checklist',
-            items: {
-              'vmware': 'VMware Deployment',
-              'baremetal': 'Bare Metal Deployment',
-              'hyperscaler': 'Hyperscaler Deployment'
-            }
-          }
-        }
-      },
-      'operations': { 
-        title: 'Operations',
-        items: {
-          'day-2-operations': 'Day-2 Operations',
-          'backup-disaster-recovery': 'Backup and Disaster Recovery',
-          'security-compliance': 'Security and Compliance'
-        }
-      },
-      'observability': {
-        title: 'Observability',
-        items: {
-          'checklists': 'Observability Checklists'
-        }
-      },
-      'resources': {
-        title: 'Resources',
-        items: {
-          'tools': 'Tools & Utilities',
-          'documentation': 'Documentation',
-          'training': 'Training & Certification'
-        }
-      },
+      'deployment': 'Deployment',
+      'operations': 'Operations',
+      'observability': 'Observability',
+      'resources': 'Resources',
       _sales_separator: {
         type: 'separator',
         title: 'Sales'
       },
-      'sales-get-started': {
-        title: 'Get Started',
-        items: {
-          'company-overview': 'Company Overview',
-          'client-engagement': 'Client Engagement',
-          'onboarding-guide': 'Onboarding Guide'
-        }
-      },
-      'sales-playbooks': {
-        title: 'Sales Playbooks',
-        items: {
-          'messaging-frameworks': 'Messaging Frameworks',
-          'pitch-decks': 'Pitch Decks & Client Presentations',
-          'case-studies': 'Case Studies & References',
-          'objection-handling': 'Objection Handling Guides'
-        }
-      },
-      'pricing-offerings': {
-        title: 'Pricing & Offerings',
-        items: {
-          'service-catalog': 'Service Catalog',
-          'pricing-models': 'Pricing Models & Discounts',
-          'custom-proposals': 'Custom Proposals'
-        }
-      },
-      'client-management': {
-        title: 'Client Management',
-        items: {
-          'crm-processes': 'CRM Processes',
-          'lead-tracking': 'Lead Tracking & Reporting',
-          'post-sales-support': 'Post-Sales Support Workflow'
-        }
-      },
-      'sales-resources': {
-        title: 'Sales Resources',
-        items: {
-          'templates': 'Templates for Proposals & Contracts',
-          'training-materials': 'Internal Training Materials',
-          'reference-guides': 'Reference Guides for Technical Discussions'
-        }
-      },
+      'sales-get-started': 'Sales Get Started',
+      'sales-playbooks': 'Sales Playbooks',
+      'pricing-offerings': 'Pricing & Offerings',
+      'client-management': 'Client Management',
+      'sales-resources': 'Sales Resources',
       _external: {
         type: 'separator',
         title: 'External'

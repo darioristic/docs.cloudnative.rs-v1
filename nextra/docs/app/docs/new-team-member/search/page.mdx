@@ -32,20 +32,16 @@ your application.
 Add a `postbuild` script to your `package.json`:
 
 <Tabs items={['Server builds', 'Static exports']}>
-  <Tabs.Tab>
-    ```json filename="package.json"
-    "scripts": {
-      "postbuild": "pagefind --site .next/server/app --output-path public/_pagefind"
-    }
-    ```
-  </Tabs.Tab>
-  <Tabs.Tab>
-    ```json filename="package.json"
-    "scripts": {
-      "postbuild": "pagefind --site .next/server/app --output-path out/_pagefind"
-    }
-    ```
-  </Tabs.Tab>
+  ```json filename="package.json"
+  "scripts": {
+    "postbuild": "pagefind --site .next/server/app --output-path public/_pagefind"
+  }
+  ```
+  ```json filename="package.json"
+  "scripts": {
+    "postbuild": "pagefind --site .next/server/app --output-path out/_pagefind"
+  }
+  ```
 </Tabs>
 
 ### Ignore generated files

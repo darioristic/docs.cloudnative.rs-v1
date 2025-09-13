@@ -15,7 +15,7 @@ export const OverviewPage: FC<{
 
   return getIndexPageMap(pageMap).map((pageItem, index) => {
     if (!Array.isArray(pageItem)) {
-      return <H2 key={pageItem.title || `separator-${index}`}>{pageItem.title}</H2>
+      return <H2 key={`separator-${index}`}>{pageItem.title}</H2>
     }
     return (
       <Cards key={`cards-${index}-${pageItem.length}`}>
@@ -30,7 +30,7 @@ export const OverviewPage: FC<{
           return (
             // @ts-expect-error -- fixme
             <Cards.Card
-              key={item.name || item.route || item.href}
+              key={item.name || item.route || `item-${index}`}
               // @ts-expect-error -- fixme
               title={item.title}
               // @ts-expect-error -- fixme

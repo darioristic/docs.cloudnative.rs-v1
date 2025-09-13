@@ -164,9 +164,9 @@ export const TSDoc: FC<TSDocProps> = ({
       items={signatures.map((_, index) => `Function Signature ${index + 1}`)}
     >
       {signatures.map((signature, index) => (
-        <Tabs.Tab key={index}>
+        <div key={index}>
           <FunctionSignature signature={signature} index={index + 1} />
-        </Tabs.Tab>
+        </div>
       ))}
     </Tabs>
   )

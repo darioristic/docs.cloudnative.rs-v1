@@ -139,65 +139,42 @@ export const Tabs: FC<
           const key = isTabObjectItem(item) 
             ? (typeof item.label === 'string' ? item.label : `tab-${index}`)
             : (typeof item === 'string' ? item : `tab-${index}`)
-          
+
           return (
             <HeadlessTab
               key={key}
               disabled={isTabObjectItem(item) && item.disabled}
-            className={args => {
-              const { selected, disabled, hover, focus } = args
-              return cn(
-                focus && 'x:nextra-focus x:ring-inset',
-                'x:whitespace-nowrap x:cursor-pointer',
-                'x:rounded-t x:p-2 x:font-medium x:leading-5 x:transition-colors',
-                'x:-mb-0.5 x:select-none x:border-b-2',
-                selected
-                  ? 'x:border-current x:outline-none'
-                  : hover
-                    ? 'x:border-gray-200 x:dark:border-neutral-800'
-                    : 'x:border-transparent',
-                selected
-                  ? 'x:text-primary-600'
-                  : disabled
-                    ? 'x:text-gray-400 x:dark:text-neutral-600 x:pointer-events-none'
+              className={(args: any) => {
+                const { selected, disabled, hover, focus } = args;
+                return cn(
+                  focus && 'x:nextra-focus x:ring-inset',
+                  'x:whitespace-nowrap x:cursor-pointer',
+                  'x:rounded-t x:p-2 x:font-medium x:leading-5 x:transition-colors',
+                  'x:-mb-0.5 x:select-none x:border-b-2',
+                  selected
+                    ? 'x:border-current x:outline-none'
                     : hover
-                      ? 'x:text-black x:dark:text-white'
-                      : 'x:text-gray-600 x:dark:text-gray-200',
-                typeof tabClassName === 'function'
-                  ? tabClassName(args)
-                  : tabClassName
-              )
-            }}
-          >
-            {isTabObjectItem(item) ? item.label : item}
-          </HeadlessTab>
-        ))}
+                      ? 'x:border-gray-200 x:dark:border-neutral-800'
+                      : 'x:border-transparent',
+                  selected
+                    ? 'x:text-primary-600'
+                    : disabled
+                      ? 'x:text-gray-400 x:dark:text-neutral-600 x:pointer-events-none'
+                      : hover
+                        ? 'x:text-black x:dark:text-white'
+                        : 'x:text-gray-600 x:dark:text-gray-200',
+                  typeof tabClassName === 'function'
+                    ? tabClassName(args)
+                    : tabClassName
+                );
+              }}
+            >
+              {isTabObjectItem(item) ? item.label : item}
+            </HeadlessTab>
+          );
+        })}
       </TabList>
       <TabPanels ref={tabPanelsRef}>{children}</TabPanels>
     </TabGroup>
-  )
-}
-
-export const Tab: FC<TabPanelProps> = ({
-  children,
-  // For SEO display all the Panel in the DOM and set `display: none;` for those that are not selected
-  unmount = false,
-  className,
-  ...props
-}) => {
-  return (
-    <TabPanel
-      {...props}
-      unmount={unmount}
-      className={args =>
-        cn(
-          'x:rounded x:mt-[1.25em]',
-          args.focus && 'x:nextra-focus',
-          typeof className === 'function' ? className(args) : className
-        )
-      }
-    >
-      {children}
-    </TabPanel>
   )
 }

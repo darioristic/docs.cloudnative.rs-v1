@@ -58,14 +58,19 @@ const _Cards: FC<
      * @default 3
      */
     num?: number
+    children?: ReactElement<{ title: string; href: string }> | ReactElement<{ title: string; href: string }>[]
   } & HTMLAttributes<HTMLDivElement>
 > = ({ children, num = 3, className, style, ...props }) => {
   // Automatically add key props to Card children if they don't have them
   const childrenWithKeys = Children.map(children, (child, index) => {
-    if (isValidElement(child) && child.type === Card && !child.key) {
+    if (
+      isValidElement<{ title: string; href: string }>(child) &&
+      child.type === Card &&
+      !child.key
+    ) {
       // Generate a key based on the card's title or href
-      const title = child.props?.title
-      const href = child.props?.href
+      const title = child.props.title
+      const href = child.props.href
       const key = title || href || `card-${index}`
       return cloneElement(child, { key })
     }

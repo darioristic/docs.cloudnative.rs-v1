@@ -66,7 +66,6 @@ site, and you can start writing math expressions by enclosing inline math in
 </Callout>
 
 <Tabs items={['Import CSS from `katex` package', 'Load CSS from CDN']}>
-<Tabs.Tab>
 1. Install the `katex` package
 
 ```bash npm2yarn
@@ -79,8 +78,6 @@ npm i katex
 import 'katex/dist/katex.min.css'
 ```
 
-</Tabs.Tab>
-<Tabs.Tab>
 Add `<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.css" />{:jsx}`
 inside `<head>` element in your root `layout` file since `<link rel="stylesheet" />{:jsx}`
 [isn't supported with Next.js Metadata API](https://nextjs.org/docs/app/api-reference/functions/generate-metadata#unsupported-metadata).
@@ -100,8 +97,6 @@ your MDX file:
 \int_2^3x^3\,\mathrm{d}x
 ```
 ````
-
-</Tabs.Tab>
 </Tabs>
 </Steps>
 
